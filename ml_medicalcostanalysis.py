@@ -23,7 +23,7 @@ from sklearn.tree import DecisionTreeRegressor
 """# **Exploratory Data Analysis**"""
 
 # Veri Setini İçe Aktarma
-data = pd.read_csv("C:/Users/qkaya/OneDrive/Masaüstü/Machine_Learning/insurance.csv")
+data = pd.read_csv("dataset path")
 
 df = data.copy()
 df.head()
