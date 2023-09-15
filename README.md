@@ -4,133 +4,160 @@ The main goal of this project is to estimate the potential cost of health insura
 
 ▶Exploratory Data Analysis
 
-In this section of the code, the data was analyzed and meaningful conclusions were drawn from the data. Data visualization techniques were used whenever possible during the analysis.
+In this section of the code, the data was analyzed and meaningful conclusions were drawn from the data.
+</br>
+Data visualization techniques were used whenever possible during the analysis.
 
 ⊿Dataset Import and First Look:
 </br>
 Health insurance data was read from a CSV file and assigned to a variable named data.
+</br>
 To preserve the data, the data was copied into a copy called df.
+</br>
 The first few lines of data were displayed with df.head().
+</br>
 Basic statistical information was examined with df.describe() to obtain a general idea about the data.
 
-⊿Veri Görselleştirmesi:
+⊿Data Visualization:
 </br>
-Histogram çizerek Vücut Kitle İndeksi (BMI) dağılımını görüntülendi.
-Nokta grafiği ile "Sigara içenlerin" sağlık masraflarını inceleyerek ilişki anlaşılmaya çalışıldı.
-Gruplanmış çubuk grafiği ile "Bölge" ve "Sigara içenlerin" sayısını karşılaştırarak ilişkiyi görüntülendi.
-Kutu grafiği ile "Cinsiyet" ve "BMI" arasındaki ilişkiyi değerlendirildi.
-Diğer grafiklerle "Yaş-BMI", "Çocuk-BMI", "BMI-Maliyet" gibi ilişkiler görselleştirilerek incelemeye alındı.
+Body Mass Index (BMI) distribution was visualized by drawing a histogram.
+</br>
+The relationship was tried to be understood by examining the health costs of "smokers" with a dot plot.
+</br>
+Visualize the relationship by comparing the number of "Region" and "Smokers" with a grouped bar chart.
+</br>
+The relationship between "Gender" and "BMI" was evaluated with a box plot.
+</br>
+Relationships such as "Age-BMI", "Child-BMI", "BMI-Cost" were visualized and examined with other graphs.
 
-⊿Aykırı Değer İncelemesi:
+⊿Outlier Review:
 </br>
-Kutu grafiği ile "BMI" verisinin aykırı değerlerini görüntülendi.
-Aykırı değerleri tespit etmek için IQR yöntemini kullanarak hesaplamalar yapıldı.
+Outliers of the “BMI” data were represented by a boxplot.
+</br>
+Calculations to detect outliers were performed using the IQR method.
 
 ▶Data Preprocessing
 
-Kodun bu kısmında ise veri setini düzenlemek ve model eğitimi için uygun hale getirmek için çeşitli ön işleme adımları gerçekleştirilmiştir.
-Bu bölümdeki işlemler, verileri sayısal formata dönüştürmek, kategorik değişkenleri kodlamak ve veriyi eğitim-test kümelerine bölmek gibi veri hazırlığı adımlarını içermektedir.
-
-⊿Label Encoding (Etiket Kodlama):
+In this section of the code, various preprocessing steps were applied to organize the dataset and make it suitable for model training.
 </br>
-"sex" ve "smoker" sütunlarını kategorik verileri sayısal değerlere dönüştürmek için etiket kodlama yöntemi kullanıldı.
-"sex" sütunu: Kadın (0) ve Erkek (1) olarak kodlandı.
-"smoker" sütunu: Sigara İçmeyen (0) ve Sigara İçen (1) olarak kodlandı.
+The processes in this section include data preparation steps such as converting the data into numerical format, coding categorical variables, and dividing the data into training-test sets.
+
+⊿Label Encoding:
+</br>
+The label coding method was used to convert categorical data into numerical values ​​in the “sex” and “smoker” columns.
+</br>
+"sex" column: Coded as Female (0) and Male (1).
+</br>
+"Smoker" column: Coded as Non-Smoker (0) and Smoker (1).
 
 ⊿One-Hot Encoding:
 </br>
-"region" sütunu kategorik olduğu için her bir bölgeyi ayrı bir sütun olarak kodlamak için one-hot kodlama kullanıldı.
-"drop='first'" parametresi ile bir bölge sütunu düşürülür çünkü diğer sütunlar zaten o bilgiyi taşıyor.
-Yeni kodlanmış "region" sütunları: "region_1", "region_2", "region_3".
-
-⊿Veri Bölme ve Ölçeklendirme:
+Because the “Region” column is categorical, one-hot coding was used to code each region as a separate column.
 </br>
-Veriler, bağımlı değişken ("charges") ve bağımsız değişkenler ("sex", "smoker", "age", "bmi", "children", "region_1", "region_2", "region_3") olarak ayırıldı.
-Veriler eğitim ve test kümelerine ayırıldı (80% eğitim, 20% test).
-Veriler standartlaştırarak ölçeklendirildi. Bu, her özelliği aynı ölçüde etkili hale getirdi.
-
-⊿Veri Dağılımını Görselleştirme:
+With the "drop='first'" parameter, a region column is dropped because other columns already carry this information.
 </br>
-İki ayrı histogram ile ölçeklendirilmiş eğitim ve test verilerinin dağılımını karşılaştırıldı.
-Birinci grafikte, ölçeklendirilmiş eğitim verisinin dağılımı görselleştirildi.
-İkinci grafikte, ölçeklendirilmiş test verisinin dağılımını görselleştirildi.
+New hardcoded "region" columns: "region_1", "region_2", "region_3".
+
+⊿Data Partitioning and Scaling:
+</br>
+The data were divided into dependent variables ("charges") and independent variables ("sex", "smoker", "age", "bmi", "children", "region_1", "region_2", "region_3").
+</br>
+The data was divided into training and testing sets (80% training, 20% testing).
+</br>
+Data were scaled by standardization. This made each feature equally effective.
+
+⊿Visualizing Data Distribution:
+</br>
+The distribution of training and test data scaled with two separate histograms was compared.
+</br>
+The distribution of scaled training data is visualized in the first graph.
+</br>
+The distribution of scaled test data is visualized in the second graph.
 
 ▶Model Selection
 
-Bu kod parçası, farklı regresyon modellerini oluşturup değerlendirmek amacıyla kullanılmıştır.
+This piece of code was used to create and evaluate different regression models.
 
-⊿Modellerin Oluşturulması:
+⊿Creating Models:
 </br>
-Bir liste olan models içerisine farklı modelleri ve bu modellere isimlerini ekliyoruz. Modeller: Doğrusal Regresyon, Ridge Regresyon, Lasso Regresyon, Karar Ağacı ve Rastgele Orman Regresyonu.
+We add different models and their names to the models list, which is a list.
+</br>
+Models: Linear Regression, Ridge Regression, Lasso Regression, Decision Tree and Random Forest Regression.
 
-⊿Çapraz Doğrulama ile Modellerin Değerlendirilmesi:
+⊿Evaluation of Models with Cross Validation:
 </br>
-Bir döngü yardımıyla her bir model için çapraz doğrulama sonuçlarını değerlendiriyoruz.
-cross_val_predict fonksiyonuyla model, ölçeklenmiş eğitim verileri üzerinde çapraz doğrulama yaparak tahminler üretir.
-Üretilen tahminlerle gerçek değerler arasındaki ortalama karesel hatayı (RMSE) hesaplayarak modellerin performansını değerlendiriyoruz.
-Bu sonuçları cv_rmse_scores adlı bir sözlüğe kaydediyoruz.
+We evaluate the cross-validation results for each model with the help of a loop.
+</br>
+With the cross_val_predict function, the model generates predictions by cross-validating on the scaled training data.
+</br>
+We evaluate the performance of the models by calculating the root mean square error (RMSE) between the generated predictions and the actual values.
+</br>
+We save these results in a dictionary called cv_rmse_scores.
 
-⊿Performansın Görselleştirilmesi:
+⊿Visualization of Performance:
 </br>
-Oluşturulan modellerin çapraz doğrulama sonuçlarını karşılaştırmak için çubuk grafik çizdiriyoruz.
-Grafikte modellerin isimleri x ekseni üzerinde, RMSE değerleri y ekseni üzerinde gösteriliyor.
+We draw a bar graph to compare the cross-validation results of the created models.
+</br>
+In the chart, the names of the models are shown on the x-axis, and the RMSE values ​​are shown on the y-axis.
 
-⊿Model Performans Sonuçlarının Yazdırılması:
+⊿Printing Model Performance Results:
 </br>
-Tüm modellerin çapraz doğrulama sonuçlarını yazdırarak karşılaştırıyoruz.
+We compare cross-validation results of all models by printing them.
 
-⊿En İyi Modelin Seçilmesi:
+⊿Choosing the Best Model:
 </br>
-min fonksiyonu ile en düşük RMSE değerine sahip modeli seçiyoruz.
-En iyi modelin adını ve bu modelin en düşük RMSE değerini yazdırıyoruz.
+We choose the model with the lowest RMSE value with the Min function.
+</br>
+We print the name of the best model and the lowest RMSE value of this model.
 
 ▶Hyperparameter Optimization
 
-Bu kod parçası, Random Forest Regressor modeli için en iyi hiperparametreleri belirlemek ve bu parametrelerle daha iyi bir performans elde etmek amacıyla hiperparametre optimizasyonu yapmaktadır.
+This piece of code performs hyperparameter optimization to determine the best hyperparameters for the Random Forest Regressor model and achieve better performance with these parameters.
 
-⊿Model ve Parametrelerin Belirlenmesi:
+⊿Determination of Model and Parameters:
 </br>
 "Random Forest Regressor" modeli oluşturulur.
 param_grid adlı bir sözlük oluşturulur, bu sözlük içinde modelin hiperparametrelerinin olası değerleri belirtilir. Bu değerler üzerinde deneme yapılacaktır.
 
-⊿Izgara Arama (Grid Search):
+⊿Grid Search:
 </br>
 GridSearchCV kullanılarak parametrelerin farklı kombinasyonları üzerinde deneme yapılır.
 cv=5 ile 5 katlı çapraz doğrulama yapılır.
 scoring='neg_mean_squared_error' ile hata karesinin negatifini en aza indirgeyerek skorlama yapılır.
 En iyi parametreleri ve bu parametrelerle elde edilen en iyi RMSE skorunu yazdırır.
 
-⊿Parametre Kombinasyonlarının Görselleştirilmesi:
+⊿Visualization of Parameter Combinations:
 </br>
 İlk olarak, "n_estimators" ve "max_depth" parametrelerinin RMSE skorlarını bir ısı haritasıyla görselleştirir.
 İkinci olarak, "max_depth" ve "n_estimators" parametrelerinin RMSE skorlarını başka bir ısı haritasıyla görselleştirir.
 
-⊿"max_features" Parametresinin Görselleştirilmesi:
+⊿Visualization of the "max_features" Parameter:
 </br>
 "max_features" parametresinin farklı değerlerine göre elde edilen RMSE skorlarını çubuk grafiği ile görselleştirir.
 Her çubuğun üstüne ilgili RMSE değeri yazdırır.
 
 ▶Model Evaluation
 
-Bu kod parçası, eğitilmiş Random Forest Regressor modelinin performansını değerlendirmek için MSE, MAE ve R-kare gibi metrikleri hesaplar ve sonuçları yazdırır. 
-Bu metrikler, modelin ne kadar iyi çalıştığını anlamak için kullanılır.
+This piece of code calculates metrics such as MSE, MAE, and R-squared to evaluate the performance of the trained Random Forest Regressor model and prints the results.
+</br>
+These metrics are used to understand how well the model works.
 
-⊿Modelin Tahminleri:
+⊿Predictions of the Model:
 </br>
 grid_search.best_estimator_ ile hiperparametre optimizasyonu sonucunda bulunan en iyi modeli kullanarak test verileri üzerinde tahminler yapılır.
 Bu tahminler y_pred_rf değişkeninde saklanır.
 
-⊿MSE (Mean Square Error) Hesaplama:
+⊿MSE (Mean Square Error) Calculation:
 </br>
 Gerçek değerlerle tahmin edilen değerler arasındaki karesel farkların ortalama değeri olan MSE hesaplanır.
 Daha düşük MSE değeri, tahminlerin gerçek değerlere ne kadar yakın olduğunu gösterir.
 
-⊿MAE (Mean Absolute Error) Hesaplama:
+⊿MAE (Mean Absolute Error) Calculation:
 </br>
 Gerçek değerlerle tahmin edilen değerler arasındaki mutlak farkların ortalama değeri olan MAE hesaplanır.
 Daha düşük MAE değeri, tahminlerin gerçek değerlere ne kadar yakın olduğunu gösterir.
 
-⊿R-kare (Coefficient of Determination) Hesaplama:
+⊿R-square (Coefficient of Determination) Calculation:
 </br>
 Gerçek değerlerle tahmin edilen değerler arasındaki varyans oranını hesaplayan R-kare hesaplanır.
 1'e yaklaşan R-kare değeri, tahmin modelinin gerçek verileri ne kadar iyi açıkladığını gösterir.
