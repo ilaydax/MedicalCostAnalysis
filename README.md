@@ -116,25 +116,31 @@ This piece of code performs hyperparameter optimization to determine the best hy
 
 ⊿Determination of Model and Parameters:
 </br>
-"Random Forest Regressor" modeli oluşturulur.
-param_grid adlı bir sözlük oluşturulur, bu sözlük içinde modelin hiperparametrelerinin olası değerleri belirtilir. Bu değerler üzerinde deneme yapılacaktır.
+The "Random Forest Regressor" model is created.
+</br>
+A dictionary named param_grid is created, in which the possible values ​​of the hyperparameters of the model are specified. Experiments will be made on these values.
 
 ⊿Grid Search:
 </br>
-GridSearchCV kullanılarak parametrelerin farklı kombinasyonları üzerinde deneme yapılır.
-cv=5 ile 5 katlı çapraz doğrulama yapılır.
-scoring='neg_mean_squared_error' ile hata karesinin negatifini en aza indirgeyerek skorlama yapılır.
-En iyi parametreleri ve bu parametrelerle elde edilen en iyi RMSE skorunu yazdırır.
+Different combinations of parameters are experimented on using GridSearchCV.
+</br>
+5-fold cross validation is performed with cv=5.
+</br>
+Scoring is done by minimizing the negative of the error square with scoring='neg_mean_squared_error'.
+</br>
+Prints the best parameters and the best RMSE score obtained with those parameters.
 
 ⊿Visualization of Parameter Combinations:
 </br>
-İlk olarak, "n_estimators" ve "max_depth" parametrelerinin RMSE skorlarını bir ısı haritasıyla görselleştirir.
-İkinci olarak, "max_depth" ve "n_estimators" parametrelerinin RMSE skorlarını başka bir ısı haritasıyla görselleştirir.
+First, it visualizes the RMSE scores of the “n_estimators” and “max_length” parameters with a heat map.
+</br>
+Secondly, it visualizes the RMSE scores of the "max_length" and "n_estimators" parameters with another heat map.
 
 ⊿Visualization of the "max_features" Parameter:
 </br>
-"max_features" parametresinin farklı değerlerine göre elde edilen RMSE skorlarını çubuk grafiği ile görselleştirir.
-Her çubuğun üstüne ilgili RMSE değeri yazdırır.
+It visualizes the RMSE scores obtained according to different values ​​of the "max_features" parameter with a bar chart.
+</br>
+Prints the corresponding RMSE value above each bar.
 
 ▶Model Evaluation
 
@@ -144,20 +150,24 @@ These metrics are used to understand how well the model works.
 
 ⊿Predictions of the Model:
 </br>
-grid_search.best_estimator_ ile hiperparametre optimizasyonu sonucunda bulunan en iyi modeli kullanarak test verileri üzerinde tahminler yapılır.
-Bu tahminler y_pred_rf değişkeninde saklanır.
+With grid_search.best_estimator_, predictions are made based on test data using the best model found as a result of hyperparameter optimization.
+</br>
+These predictions are stored in the y_pred_rf variable.
 
 ⊿MSE (Mean Square Error) Calculation:
 </br>
-Gerçek değerlerle tahmin edilen değerler arasındaki karesel farkların ortalama değeri olan MSE hesaplanır.
-Daha düşük MSE değeri, tahminlerin gerçek değerlere ne kadar yakın olduğunu gösterir.
+MSE, which is the average value of the squared differences between the actual values ​​and the predicted values, is calculated.
+</br>
+A lower MSE value indicates how close the estimates are to the actual values.
 
 ⊿MAE (Mean Absolute Error) Calculation:
 </br>
-Gerçek değerlerle tahmin edilen değerler arasındaki mutlak farkların ortalama değeri olan MAE hesaplanır.
-Daha düşük MAE değeri, tahminlerin gerçek değerlere ne kadar yakın olduğunu gösterir.
+MAE, which is the average value of the absolute differences between actual values ​​and predicted values, is calculated.
+</br>
+A lower MAE value indicates how close the predictions are to the actual values.
 
 ⊿R-square (Coefficient of Determination) Calculation:
 </br>
-Gerçek değerlerle tahmin edilen değerler arasındaki varyans oranını hesaplayan R-kare hesaplanır.
-1'e yaklaşan R-kare değeri, tahmin modelinin gerçek verileri ne kadar iyi açıkladığını gösterir.
+R-squared is calculated, which calculates the ratio of variance between actual values ​​and predicted values.
+</br>
+An R-squared value approaching 1 indicates how well the prediction model explains the actual data.
