@@ -1,17 +1,17 @@
 # *Medical Cost Analysis*
 
-Bu projedeki temel amaç, çeşitli faktörlere dayalı olarak bireylerin potansiyel sağlık sigortası maliyetini tahmin etmektir.
+The main goal of this project is to estimate the potential cost of health insurance for individuals using various factors.
 
 ▶Exploratory Data Analysis
 
-Kodun bu kısmında veriler analiz edilmiş ve verilerden anlamlı sonuçlar çıkarılmıştır. Analiz sırasında mümkün olduğunca veri görselleştirme teknikleri kullanılmıştır.
+In this section of the code, the data was analyzed and meaningful conclusions were drawn from the data. Data visualization techniques were used whenever possible during the analysis.
 
-⊿Veri Setini İçe Aktarma ve İlk Bakış:
+⊿Dataset Import and First Look:
 </br>
-Bir CSV dosyasından sağlık sigortası verilerini okundu ve bu veriler data adında bir değişkene atandı.
-Verileri korunmak için datayı df adında bir kopyaya kopyalandı.
-df.head() ile verilerin ilk birkaç satırını görüntülendi.
-df.describe() ile temel istatistiksel bilgileri incelenerek veri hakkında genel bir fikir edinildi.
+Health insurance data was read from a CSV file and assigned to a variable named data.
+To preserve the data, the data was copied into a copy called df.
+The first few lines of data were displayed with df.head().
+Basic statistical information was examined with df.describe() to obtain a general idea about the data.
 
 ⊿Veri Görselleştirmesi:
 </br>
